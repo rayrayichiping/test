@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<title>login</title>
+</head>
+<body>
+	
+		<div class="container">
+				<div class="col-lg-4" style="width:800px;margin-left:40%">
+					<div class="jumbotron" style="margin-top:150px">
+						<h3>系統管理員登入</h3>
+						<br>
+						<from>
+							<div class="form-group">
+								<input id="login_acc" type="text" class="form-control" placeholder="帳號 :">
+							</div>
+
+							<div class="form-group">
+								<input id="login_pw" type="password" class="form-control" placeholder="密碼 :">
+							</div>
+
+							<bottom onclick="login()" type="submit" class="btn btn-primary form-control">登入</bottom>
+				
+					</div>	
+			
+						</from>
+		</div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>	
+
+<script>
+	function login()
+	{
+		var user=$("#login_acc").val();
+		var pw=$("#login_pw").val();
+	
+	$.ajax({
+		url:'php/login.php',
+		type:"POST",
+		data:
+		{
+			user:user,
+			pw:pw
+		},
+		success:function(result)
+		{
+			if(result.substr(0,2) == "Hi")
+			{
+				alert("登入成功")
+			}
+			else
+			{
+				alert("帳號或密碼錯誤")
+			}
+		}
+	})
+}
+		
+
+	
+</script>
+</body>
+</html>
